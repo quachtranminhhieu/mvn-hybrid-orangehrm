@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="OrangeHRM">
+
+	<listeners>
+		<listener class-name="commons.MethodListener" />
+		<listener class-name="reportConfig.ExtentTestListenerV5" />
+<!-- 	<listener class-name="reportConfig.ReportNGListener" /> -->
+<!-- 	<listener class-name="reportConfig.AllureTestListener"> -->
+<!-- 	<listener class-name="retryConfig.RetryListener" /> -->
+		<listener class-name="org.uncommons.reportng.HTMLReporter" />
+		<listener class-name="org.uncommons.reportng.JUnitXMLReporter" />
+		<listener class-name="org.uncommons.reportng.JUnitXMLReporter" />
+	</listeners>
+
+<!-- 	============================================================= -->
+<!-- 	Run Local Host -->
+
+	<parameter name="environmentName" value="dev" />
+	<parameter name="serverName" value="local" />
+
+<!-- 	<test name="Run on Firefox"> -->
+<!-- 		<parameter name = "browserName" value = "Firefox"/> -->
+<!-- 		<classes> -->
+<!-- 			<class name="com.orangehrm.user.Live_Coding_OrangeHRM" /> -->
+<!-- 		</classes> -->
+<!-- 	</test> -->
+
+	<test name="Run on Chrome">
+		<parameter name="browserName" value="Chrome" />
+		<classes>
+<!-- 			<class name="com.orangehrm.user.Live_Coding_OrangeHRM" /> -->
+			<class name="demo.TestCase" />
+		</classes>
+	</test>
+	
+<!-- 	============================================================= -->
+<!-- 	Run Grid -->
+
+<!-- 	<parameter name="environmentName" value="dev" /> -->
+<!-- 	<parameter name="serverName" value="grid" /> -->
+
+<!-- 	<test name="Run on Chrome"> -->
+<!-- 		<parameter name="browserName" value="Chrome" /> -->
+<!-- 		<parameter name = "ipAddress" value = "localhost"/> -->
+<!-- 		<parameter name = "portNumber" value = "4444"/> -->
+<!-- 		<classes> -->
+<!-- 			<class name="com.orangehrm.user.Cloud_Testing" /> -->
+<!-- 		</classes> -->
+<!-- 	</test> -->
+
+<!-- 	<test name="Run on Firefox"> -->
+<!-- 		<parameter name = "browserName" value = "Firefox"/> -->
+<!-- 		<parameter name = "ipAddress" value = "localhost"/> -->
+<!-- 		<parameter name = "portNumber" value = "4444"/> -->
+<!-- 		<classes> -->
+<!-- 			<class name="com.orangehrm.user.Cloud_Testing" /> -->
+<!-- 		</classes> -->
+<!-- 	</test> -->
+
+<!-- 	============================================================= -->
+<!-- 	Run BrowserStack -->
+
+<!-- 	<parameter name="environmentName" value="dev" /> -->
+<!-- 	<parameter name="serverName" value="browserstack" /> -->
+
+<!-- 	<test name="Run on Firefox"> -->
+<!-- 		<parameter name="browserName" value="Firefox" /> -->
+<!-- 		<parameter name="osName" value="Windows" /> -->
+<!-- 		<parameter name="osVersion" value="10" /> -->
+<!-- 		<classes> -->
+<!-- 			<class name="com.orangehrm.user.Cloud_Testing" /> -->
+<!-- 		</classes> -->
+<!-- 	</test> -->
+	
+<!-- 	<test name="Run on Chrome"> -->
+<!-- 		<parameter name="browserName" value="Chrome" /> -->
+<!-- 		<parameter name="osName" value="OS X" /> -->
+<!-- 		<parameter name="osVersion" value="Big Sur" /> -->
+<!-- 		<classes> -->
+<!-- 			<class name="com.orangehrm.user.Cloud_Testing" /> -->
+<!-- 		</classes> -->
+<!-- 	</test> -->
+
+<!-- 	============================================================= -->
+<!-- 	Run SauceLab -->
+
+<!-- 	<parameter name="environmentName" value="dev" /> -->
+<!-- 	<parameter name="serverName" value="saucelab" /> -->
+
+<!-- 	<test name="Run on Firefox"> -->
+<!-- 		<parameter name="browserName" value="Firefox" /> -->
+<!-- 		<parameter name="osName" value="macOS 11.00" /> -->
+<!-- 		<classes> -->
+<!-- 			<class name="com.orangehrm.user.Cloud_Testing" /> -->
+<!-- 		</classes> -->
+<!-- 	</test> -->
+	
+<!-- 	<test name="Run on Chrome"> -->
+<!-- 		<parameter name="browserName" value="Chrome" /> -->
+<!-- 		<parameter name="osName" value="Windows 10" /> -->
+<!-- 		<classes> -->
+<!-- 			<class name="com.orangehrm.user.Cloud_Testing" /> -->
+<!-- 		</classes> -->
+<!-- 	</test> -->
+
+<!-- 	============================================================= -->
+<!-- 	Run CrossBrowserTesting -->
+
+<!-- 	<parameter name="environmentName" value="dev" /> -->
+<!-- 	<parameter name="serverName" value="crossbrowser" /> -->
+
+<!-- 	<test name="Run on Firefox"> -->
+<!-- 		<parameter name="browserName" value="Firefox" /> -->
+<!-- 		<parameter name="osName" value="Windows 10" /> -->
+<!-- 		<classes> -->
+<!-- 			<class name="com.orangehrm.user.Cloud_Testing" /> -->
+<!-- 		</classes> -->
+<!-- 	</test> -->
+	
+<!-- 	<test name="Run on Safari"> -->
+<!-- 		<parameter name="browserName" value="Safari" /> -->
+<!-- 		<parameter name="osName" value="MacOS 11.0" /> -->
+<!-- 		<classes> -->
+<!-- 			<class name="com.orangehrm.user.Cloud_Testing" /> -->
+<!-- 		</classes> -->
+<!-- 	</test> -->
+
+<!-- 	============================================================= -->
+<!-- 	Run LambdaTest -->
+
+<!-- 	<parameter name="environmentName" value="dev" /> -->
+<!-- 	<parameter name="serverName" value="lambda" /> -->
+
+<!-- 	<test name="Run on Firefox"> -->
+<!-- 		<parameter name="browserName" value="Firefox" /> -->
+<!-- 		<parameter name="osName" value="Windows 10" /> -->
+<!-- 		<classes> -->
+<!-- 			<class name="com.orangehrm.user.Cloud_Testing" /> -->
+<!-- 		</classes> -->
+<!-- 	</test> -->
+	
+<!-- 	<test name="Run on Safari"> -->
+<!-- 		<parameter name="browserName" value="Safari" /> -->
+<!-- 		<parameter name="osName" value="MacOS Big Sur" /> -->
+<!-- 		<classes> -->
+<!-- 			<class name="com.orangehrm.user.Cloud_Testing" /> -->
+<!-- 		</classes> -->
+<!-- 	</test> -->
+<!-- 	============================================================= -->
+
+</suite> 
