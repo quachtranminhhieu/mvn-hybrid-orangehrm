@@ -191,7 +191,7 @@ public class BasePage {
 		}
 	}
 	
-	public void closeAllTabWithoutParent(WebDriver driver, String parentID) {
+	public void closeAllTabExceptParent(WebDriver driver, String parentID) {
 		Set<String> allWindowIDs = driver.getWindowHandles();
 		for (String id : allWindowIDs) {
 			if(!id.equals(parentID)) {

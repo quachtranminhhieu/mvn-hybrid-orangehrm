@@ -45,7 +45,7 @@ public class Cloud_Testing extends BaseTest {
 		empStatusValue = "Enabled";
 		
 		loginPage = PageGeneratorManager.getLoginPage(driver);
-		loginPage.closeAllTabWithoutParent(driver, driver.getWindowHandle());
+		loginPage.closeAllTabExceptParent(driver, driver.getWindowHandle());
 
 		dashboardPage = loginPage.loginToSystem(driver, adminUsername, adminPassword);
 	}
