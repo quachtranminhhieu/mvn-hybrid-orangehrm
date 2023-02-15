@@ -12,19 +12,18 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import com.aventstack.extentreports.Status;
-import com.orangehrm.data.EmployeeData;
-import com.orangehrm.data.EmployeeData.ContactDetails;
-import com.orangehrm.data.EmployeeData.Department;
-import com.orangehrm.data.EmployeeData.EmergencyContact;
-import com.orangehrm.data.EmployeeData.EmployeeInformation;
-import com.orangehrm.data.EmployeeData.Immigration;
-import com.orangehrm.data.EmployeeData.Job;
-import com.orangehrm.data.EmployeeData.Memberships;
-import com.orangehrm.data.EmployeeData.PersonalDetails;
-import com.orangehrm.data.EmployeeData.Qualifications;
-import com.orangehrm.data.EmployeeData.ReportTo;
-import com.orangehrm.data.EmployeeData.Salary;
-import com.orangehrm.data.EmployeeData.Tax;
+import com.orangehrm.data.MyInfoData;
+import com.orangehrm.data.MyInfoData.ContactDetails;
+import com.orangehrm.data.MyInfoData.Department;
+import com.orangehrm.data.MyInfoData.EmergencyContact;
+import com.orangehrm.data.MyInfoData.Immigration;
+import com.orangehrm.data.MyInfoData.Job;
+import com.orangehrm.data.MyInfoData.Memberships;
+import com.orangehrm.data.MyInfoData.PersonalDetails;
+import com.orangehrm.data.MyInfoData.Qualifications;
+import com.orangehrm.data.MyInfoData.ReportTo;
+import com.orangehrm.data.MyInfoData.Salary;
+import com.orangehrm.data.MyInfoData.Tax;
 
 import commons.BaseTest;
 import pageObjects.orangeHRM.AddEmployeePO;
@@ -36,7 +35,7 @@ import pageObjects.orangeHRM.PageGeneratorManager;
 import reportConfig.ExtentTestManagerV5;
 import utilities.JsonHelper;
 
-public class Live_Coding_OrangeHRM extends BaseTest {
+public class OrangeHRM_MyInfo extends BaseTest {
 
 	@Parameters({ "environmentName", "serverName", "browserName", "ipAddress", "portNumber", "osName", "osVersion"})
 	@BeforeClass
@@ -47,23 +46,21 @@ public class Live_Coding_OrangeHRM extends BaseTest {
 
 		fileName = "cat.jpg";
 		
-		empInformation = EmployeeData.getEmployeeInformation();
-		empPersonalDetails = EmployeeData.getPersonalDetails();
-		empContactDetails = EmployeeData.getContactDetails();
-		empEmergencyContact = EmployeeData.getEmergencyContact();
-		empDepartment = EmployeeData.getDepartment();
-		empImmigration = EmployeeData.getImmigration();
-		empJob = EmployeeData.getJob();
-		empSalary = EmployeeData.getSalary();
-		empTax = EmployeeData.getTax();
-		empReportTo = EmployeeData.getReportTo();
-		empQualifications = EmployeeData.getQualifications();
-		empMemberships = EmployeeData.getMemberships();
+		empPersonalDetails = MyInfoData.getPersonalDetails();
+		empContactDetails = MyInfoData.getContactDetails();
+		empEmergencyContact = MyInfoData.getEmergencyContact();
+		empDepartment = MyInfoData.getDepartment();
+		empImmigration = MyInfoData.getImmigration();
+		empJob = MyInfoData.getJob();
+		empSalary = MyInfoData.getSalary();
+		empTax = MyInfoData.getTax();
+		empReportTo = MyInfoData.getReportTo();
+		empQualifications = MyInfoData.getQualifications();
+		empMemberships = MyInfoData.getMemberships();
 		
 		loginPage = PageGeneratorManager.getLoginPage(driver);
-		loginPage.closeAllTabWithoutParent(driver, driver.getWindowHandle());
+		loginPage.closeAllTabExceptParent(driver, driver.getWindowHandle());
 
-		dashboardPage = loginPage.loginToSystem(driver, JsonHelper.getEmployee().getAdminUsername(), JsonHelper.getEmployee().getAdminPassword());
 	}
 
 	@BeforeMethod
@@ -74,83 +71,15 @@ public class Live_Coding_OrangeHRM extends BaseTest {
 	@Test
 	public void Employee_01_Add_New_Employee(Method method) {
 		ExtentTestManagerV5.startTest(method.getName(), "Employee_01_Add_New_Employee");
-		ExtentTestManagerV5.getTest().log(Status.INFO, "Add New 01 - Step " + ++stepNumber + ": Open 'Employee List' page");
-		dashboardPage.openMenuPage(driver, "PIM");
-		employeeListPage = PageGeneratorManager.getEmployeeListPage(driver);
-
-		ExtentTestManagerV5.getTest().log(Status.INFO, "Add New 01 - Step " + ++stepNumber + ": Click To 'Add' button");
-		employeeListPage.clickToButtonByText(driver, "Add");
-		addEmployeePage = PageGeneratorManager.getAddEmployeePage(driver);
-		addEmployeePage.waitForLoadingIconDisappear(driver);
-
-		ExtentTestManagerV5.getTest().log(Status.INFO, "Add New 01 - Step " + ++stepNumber + ": Enter to 'First Name' textbox with value is: '" + empInformation.getEmpFirstName() + "'");
-		addEmployeePage.sendKeyToFirstNameTextbox(driver, empInformation.getEmpFirstName());
-		
-		ExtentTestManagerV5.getTest().log(Status.INFO, "Add New 01 - Step " + ++stepNumber + ": Enter to 'Last Name' textbox with value is: '" + empInformation.getEmpLastName() + "'");
-		addEmployeePage.sendKeyToLastNameTextbox(driver, empInformation.getEmpLastName());
-		
-		ExtentTestManagerV5.getTest().log(Status.INFO, "Add New 01 - Step " + ++stepNumber + ": Get value of 'Employee ID'");
-		empInformation.setEmpID(addEmployeePage.getTextboxValueByLabel(driver, "Employee Id"));
-		
-		ExtentTestManagerV5.getTest().log(Status.INFO, "Add New 01 - Step " + ++stepNumber + ": Enter to 'Employee Id' textbox with value is: '" + empInformation.getEmpID() + "'");
-		addEmployeePage.sendKeyToTextboxByLabel(driver, empInformation.getEmpID(), "Employee Id");
-		empInformation.setEmpID(addEmployeePage.checkEmployeeIDAlreadyExists(driver, empInformation.getEmpID()));
-		
-		ExtentTestManagerV5.getTest().log(Status.INFO, "Add New 01 - Step " + ++stepNumber + ": Click to 'Create Login Details' switch");
-		addEmployeePage.clickToSwitchByLabel(driver, "Create Login Details");
-		
-		ExtentTestManagerV5.getTest().log(Status.INFO, "Add New 01 - Step " + ++stepNumber + ": Enter to 'User Name' textbox with value is: '" + empInformation.getEmpUserName() + "'");
-		addEmployeePage.sendKeyToTextboxByLabel(driver, empInformation.getEmpUserName(), "Username");
-		
-		ExtentTestManagerV5.getTest().log(Status.INFO, "Add New 01 - Step " + ++stepNumber + ": Enter to 'Password' textbox with value is: '" + empInformation.getEmpPassword() + "'");
-		addEmployeePage.sendKeyToTextboxByLabel(driver, empInformation.getEmpPassword(), "Password");
-		
-		System.out.println("Employee Name = " + empInformation.getEmpFullName());
-		System.out.println("Employee ID = " + empInformation.getEmpID());
-		System.out.println("Employee New Name = " + empPersonalDetails.getEditEmpFullName());
-		System.out.println("Supervisor Name = " + empReportTo.getEmpRepSuperFullName());
-		System.out.println("Subordinate Name = " + empReportTo.getEmpRepSuborFullName());
-		System.out.println("Password = " + empInformation.getEmpPassword());
-		
-		ExtentTestManagerV5.getTest().log(Status.INFO, "Add New 01 - Step " + ++stepNumber + ": Enter to 'Confirm Password' textbox with value is: '" + empInformation.getEmpPassword() + "'");
-		addEmployeePage.sendKeyToTextboxByLabel(driver, empInformation.getEmpPassword(), "Confirm Password");
-		
-		ExtentTestManagerV5.getTest().log(Status.INFO, "Add New 01 - Step " + ++stepNumber + ": Click to '" + empInformation.getEmpStatusValue() +"' radio button");
-		addEmployeePage.checkToRadioButtonByLabel(driver, empInformation.getEmpStatusValue());
-		
-		ExtentTestManagerV5.getTest().log(Status.INFO, "Add New 01 - Step " + ++stepNumber + ": Click to 'Save' button");
-		addEmployeePage.clickToButtonByText(driver, "Save");
-		myInfoPage = PageGeneratorManager.getMyInfoPage(driver);
-		
-		ExtentTestManagerV5.getTest().log(Status.INFO, "Add New 01 - Step " + ++stepNumber + ": Verify 'Successful Message' is displayed");
-		Assert.assertEquals(myInfoPage.getMessageTitle(driver), "Success");
-		myInfoPage.waitForLoadingIconDisappear(driver);
-		
- 		ExtentTestManagerV5.getTest().log(Status.INFO, "Add New 01 - Step " + ++stepNumber + ": Open 'Employee List' page");
-		myInfoPage.openSubMenuPage(driver, "PIM", "Employee List");
-		employeeListPage = PageGeneratorManager.getEmployeeListPage(driver);
-		
-		ExtentTestManagerV5.getTest().log(Status.INFO, "Add New 01 - Step " + ++stepNumber + ": Enter to 'Employee Name' textbox with value is: '" + empInformation.getEmpFullName() + "'");
-		employeeListPage.sendKeyToTextboxAndClickResultByLabel(driver, empInformation.getEmpFullName(), "Employee Name");
-	
-		ExtentTestManagerV5.getTest().log(Status.INFO, "Add New 01 - Step " + ++stepNumber + ": Enter to 'Employee Id' textbox with value is: '" + empInformation.getEmpID() + "'");
-		employeeListPage.sendKeyToTextboxByLabel(driver, empInformation.getEmpID(), "Employee Id");
-		
-		ExtentTestManagerV5.getTest().log(Status.INFO, "Add New 01 - Step " + ++stepNumber + ": Click to 'Search' button");
-		employeeListPage.clickToButtonByText(driver, "Search");
-		
-		ExtentTestManagerV5.getTest().log(Status.INFO, "Add New 01 - Step " + ++stepNumber + ": Verify Employee Information is displayed at 'Result Table'");
-		Assert.assertEquals(employeeListPage.getValueInDataTableNameAtColumnNameAndRowIndex(driver, "", "Id", "1"), empInformation.getEmpID());
-		Assert.assertEquals(employeeListPage.getValueInDataTableNameAtColumnNameAndRowIndex(driver, "", "First (& Middle) Name", "1"), empInformation.getEmpFirstName());
-		Assert.assertEquals(employeeListPage.getValueInDataTableNameAtColumnNameAndRowIndex(driver, "", "Last Name", "1"), empInformation.getEmpLastName());
+		ExtentTestManagerV5.getTest().log(Status.INFO, "Add New 01 - Step " + ++stepNumber + ": Check status Create New User");
+		Assert.assertTrue(OrangeHRM_CreateNewUser.resultOfCreateUser);
 	}
 	
 	@Test(dependsOnMethods = "Employee_01_Add_New_Employee")
 	public void Employee_02_Upload_Avatar(Method method) {
 		ExtentTestManagerV5.startTest(method.getName(), "Employee_02_Upload_Avatar");	
 		ExtentTestManagerV5.getTest().log(Status.INFO, "Upload Avatar 02 - Step " + ++stepNumber + ": Login with Employee Role");
-		loginPage = employeeListPage.logoutToSystem(driver);
-		dashboardPage = loginPage.loginToSystem(driver, empInformation.getEmpUserName(), empInformation.getEmpPassword());
+		dashboardPage = loginPage.loginToSystem(driver, OrangeHRM_CreateNewUser.employeeUserName, OrangeHRM_CreateNewUser.employeePassword);
 		
 		ExtentTestManagerV5.getTest().log(Status.INFO, "Upload Avatar 02 - Step " + ++stepNumber + ": Click to 'My Info' Menu");
 		dashboardPage.openMenuPage(driver, "My Info");
@@ -231,7 +160,7 @@ public class Live_Coding_OrangeHRM extends BaseTest {
 		Assert.assertEquals(myInfoPage.getSelectedItemInCustomDropDownByLabel(driver, "Nationality"), empPersonalDetails.getEditEmpNationality());
 		
 		ExtentTestManagerV5.getTest().log(Status.INFO, "Personal Details 03 - Step " + ++stepNumber + ": Verify 'Employee ID' textbox value is correct");
-		Assert.assertEquals(myInfoPage.getTextboxValueByLabel(driver, "Employee Id"), empInformation.getEmpID());
+		Assert.assertEquals(myInfoPage.getTextboxValueByLabel(driver, "Employee Id"), OrangeHRM_CreateNewUser.employeeID);
 	}
 	
 	@Test(dependsOnMethods = "Employee_01_Add_New_Employee")
@@ -445,14 +374,14 @@ public class Live_Coding_OrangeHRM extends BaseTest {
 		ExtentTestManagerV5.getTest().log(Status.INFO, "Job 08 - Step " + ++stepNumber + ": Enter to 'Employee Name' textbox with value is: '" + empPersonalDetails.getEditEmpFullName() + "'");
 		employeeListPage.sendKeyToTextboxAndClickResultByLabel(driver, empPersonalDetails.getEditEmpFullName(), "Employee Name");
 		
-		ExtentTestManagerV5.getTest().log(Status.INFO, "Job 08 - Step " + ++stepNumber + ": Enter to 'Employee Id' textbox with value is: '" + empInformation.getEmpID() + "'");
-		employeeListPage.sendKeyToTextboxByLabel(driver, empInformation.getEmpID(), "Employee Id");
+		ExtentTestManagerV5.getTest().log(Status.INFO, "Job 08 - Step " + ++stepNumber + ": Enter to 'Employee Id' textbox with value is: '" + OrangeHRM_CreateNewUser.employeeID + "'");
+		employeeListPage.sendKeyToTextboxByLabel(driver, OrangeHRM_CreateNewUser.employeeID, "Employee Id");
 		
 		ExtentTestManagerV5.getTest().log(Status.INFO, "Job 08 - Step " + ++stepNumber + ": Click to 'Search' button");
 		employeeListPage.clickToButtonByText(driver, "Search");
 		
 		ExtentTestManagerV5.getTest().log(Status.INFO, "Job 08 - Step " + ++stepNumber + ": Verify Employee Information displayed at 'Result Table'");
-		Assert.assertEquals(employeeListPage.getValueInDataTableNameAtColumnNameAndRowIndex(driver, "", "Id", "1"), empInformation.getEmpID());
+		Assert.assertEquals(employeeListPage.getValueInDataTableNameAtColumnNameAndRowIndex(driver, "", "Id", "1"), OrangeHRM_CreateNewUser.employeeID);
 		Assert.assertEquals(employeeListPage.getValueInDataTableNameAtColumnNameAndRowIndex(driver, "", "First (& Middle) Name", "1"), empPersonalDetails.getEditEmpFirstName());
 		Assert.assertEquals(employeeListPage.getValueInDataTableNameAtColumnNameAndRowIndex(driver, "", "Last Name", "1"), empPersonalDetails.getEditEmpLastName());
 		
@@ -734,14 +663,14 @@ public class Live_Coding_OrangeHRM extends BaseTest {
 		employeeListPage.refreshCurrentPage(driver);
 		employeeListPage.sendKeyToTextboxAndClickResultByLabel(driver, empPersonalDetails.getEditEmpFullName(), "Employee Name");
 		
-		ExtentTestManagerV5.getTest().log(Status.INFO, "Report-to 11 - Step " + ++stepNumber + ": Enter to 'Employee Id' textbox with value is: '" + empInformation.getEmpID() + "'");
-		employeeListPage.sendKeyToTextboxByLabel(driver, empInformation.getEmpID(), "Employee Id");
+		ExtentTestManagerV5.getTest().log(Status.INFO, "Report-to 11 - Step " + ++stepNumber + ": Enter to 'Employee Id' textbox with value is: '" + OrangeHRM_CreateNewUser.employeeID + "'");
+		employeeListPage.sendKeyToTextboxByLabel(driver, OrangeHRM_CreateNewUser.employeeID, "Employee Id");
 		
 		ExtentTestManagerV5.getTest().log(Status.INFO, "Report-to 11 - Step " + ++stepNumber + ": Click to 'Search' button");
 		employeeListPage.clickToButtonByText(driver, "Search");
 		
 		ExtentTestManagerV5.getTest().log(Status.INFO, "Report-to 11 - Step " + ++stepNumber + ": Verify Employee Information displayed at 'Result Table'");
-		Assert.assertEquals(employeeListPage.getValueInDataTableNameAtColumnNameAndRowIndex(driver, "", "Id", "1"), empInformation.getEmpID());
+		Assert.assertEquals(employeeListPage.getValueInDataTableNameAtColumnNameAndRowIndex(driver, "", "Id", "1"), OrangeHRM_CreateNewUser.employeeID);
 		Assert.assertEquals(employeeListPage.getValueInDataTableNameAtColumnNameAndRowIndex(driver, "", "First (& Middle) Name", "1"), empPersonalDetails.getEditEmpFirstName());
 		Assert.assertEquals(employeeListPage.getValueInDataTableNameAtColumnNameAndRowIndex(driver, "", "Last Name", "1"), empPersonalDetails.getEditEmpLastName());
 		
@@ -1023,8 +952,8 @@ public class Live_Coding_OrangeHRM extends BaseTest {
 		ExtentTestManagerV5.getTest().log(Status.INFO, "Verification 14 - Step " + ++stepNumber + ": Enter to 'Employee Name' textbox with value is: '" + empPersonalDetails.getEditEmpFullName() + "'");
 		employeeListPage.sendKeyToTextboxAndClickResultByLabel(driver, empPersonalDetails.getEditEmpFullName(), "Employee Name");
 		
-		ExtentTestManagerV5.getTest().log(Status.INFO, "Verification 14 - Step " + ++stepNumber + ": Enter to 'Employee Id' textbox with value is: '" + empInformation.getEmpID() + "'");
-		employeeListPage.sendKeyToTextboxByLabel(driver, empInformation.getEmpID(), "Employee Id");
+		ExtentTestManagerV5.getTest().log(Status.INFO, "Verification 14 - Step " + ++stepNumber + ": Enter to 'Employee Id' textbox with value is: '" + OrangeHRM_CreateNewUser.employeeID + "'");
+		employeeListPage.sendKeyToTextboxByLabel(driver, OrangeHRM_CreateNewUser.employeeID, "Employee Id");
 		
 		ExtentTestManagerV5.getTest().log(Status.INFO, "Verification 14 - Step " + ++stepNumber + ": Select item in 'Employement Status' dropdown with value is: '" + empJob.getEmpJobStatus() + "'");
 		employeeListPage.selectItemInCustomDropdownByLabel(driver, empJob.getEmpJobStatus(), "Employment Status");
@@ -1042,7 +971,7 @@ public class Live_Coding_OrangeHRM extends BaseTest {
 		employeeListPage.clickToButtonByText(driver, "Search");
 		
 		ExtentTestManagerV5.getTest().log(Status.INFO, "Verification 14 - Step " + ++stepNumber + ": Verify 'Id' is correct");
-		Assert.assertEquals(employeeListPage.getValueInDataTableNameAtColumnNameAndRowIndex(driver, "", "Id", "1"), empInformation.getEmpID());
+		Assert.assertEquals(employeeListPage.getValueInDataTableNameAtColumnNameAndRowIndex(driver, "", "Id", "1"), OrangeHRM_CreateNewUser.employeeID);
 		
 		ExtentTestManagerV5.getTest().log(Status.INFO, "Verification 14 - Step " + ++stepNumber + ": Verify 'First (& Middle) Name' is correct");
 		Assert.assertEquals(employeeListPage.getValueInDataTableNameAtColumnNameAndRowIndex(driver, "", "First (& Middle) Name", "1"), empPersonalDetails.getEditEmpFirstName());
@@ -1073,7 +1002,6 @@ public class Live_Coding_OrangeHRM extends BaseTest {
 	private int stepNumber;
 	private String fileName;
 	
-	private EmployeeInformation empInformation;
 	private PersonalDetails empPersonalDetails;
 	private ContactDetails empContactDetails;
 	private EmergencyContact empEmergencyContact;
