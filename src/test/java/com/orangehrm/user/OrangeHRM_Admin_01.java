@@ -33,7 +33,7 @@ public class OrangeHRM_Admin_01 extends BaseTest{
 		faker = DataUtil.getData();
 		
 		adminUserRole = "Admin";
-		adminEmployeeName = OrangeHRM_PIM_CreateNewUser.employeeName;
+		adminEmployeeName = OrangeHRM_PIM_01_CreateNewUser.employeeName;
 		adminStatus = "Enabled";
 		adminUserName = faker.getUserName();
 		adminPassword = faker.getStrongPassword();
@@ -74,7 +74,7 @@ public class OrangeHRM_Admin_01 extends BaseTest{
 	public void Admin_01_Add_New_Employee(Method method) {
 		ExtentTestManagerV5.startTest(method.getName(), "Admin_01_Add_New_Employee");
 		ExtentTestManagerV5.getTest().log(Status.INFO, "Add New 01 - Step " + ++stepNumber + ": Check status Create New User");
-		Assert.assertTrue(OrangeHRM_PIM_CreateNewUser.resultOfCreateUser);
+		Assert.assertTrue(OrangeHRM_PIM_01_CreateNewUser.resultOfCreateUser);
 	}
 	
 	@Test(dependsOnMethods = "Admin_01_Add_New_Employee")

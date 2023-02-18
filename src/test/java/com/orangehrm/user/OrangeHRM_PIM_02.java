@@ -25,7 +25,7 @@ import pageObjects.orangeHRM.PageGeneratorManager;
 import reportConfig.ExtentTestManagerV5;
 import utilities.JsonHelper;
 
-public class OrangeHRM_PIM_CreateNewUser extends BaseTest {
+public class OrangeHRM_PIM_02 extends BaseTest {
 
 	@Parameters({ "environmentName", "serverName", "browserName", "ipAddress", "portNumber", "osName", "osVersion"})
 	@BeforeClass
