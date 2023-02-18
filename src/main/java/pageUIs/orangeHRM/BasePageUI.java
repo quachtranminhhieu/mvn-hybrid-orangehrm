@@ -7,7 +7,9 @@ public class BasePageUI {
 	public static final String FIRST_NAME_TEXTBOX = "//input[@name='firstName']";
 	public static final String LAST_NAME_TEXTBOX = "//input[@name='lastName']";
 	public static final String LOGIN_BUTTON = "//button[@type='submit']";
+	public static final String DYNAMIC_TEXT_BY_LABEL = "//label[text()='%s']/parent::div/following-sibling::div/p";
 	public static final String DYNAMIC_TEXTBOX_BY_LABEL = "//label[text()='%s']/parent::div/following-sibling::div//input";
+	public static final String DYNAMIC_TEXTAREA_BY_LABEL = "//label[text()='%s']/parent::div/following-sibling::div/textarea";
 	public static final String DYNAMIC_BUTTON_BY_TEXT = "//button[contains(string(),'%s')]";
 	public static final String DYNAMIC_BUTTON_BY_TEXT_IN_FORM = "//h6[text()='%s']/following-sibling::button[contains(string(),'%s')]";
 	public static final String DYNAMIC_SWITCH= "//*[text()='%s']/parent::div//span";
@@ -25,6 +27,8 @@ public class BasePageUI {
 	public static final String DYNAMIC_HEADER_NAME_IN_DATA_TABLE_NAME = "//h6[text()='%s']/parent::div/parent::div/following-sibling::div/div[@role='table']/div[@class='oxd-table-header']//div[text()='%s']/preceding-sibling::div";
 	public static final String DYNAMIC_CELL_IN_DATA_TABLE_NAME_AT_ROW_INDEX_AND_COLUMN_INDEX = "//h6[text()='%s']/parent::div/parent::div/following-sibling::div/div[@role='table']/div[@role='rowgroup']/div[%s]//div[@role='cell'][%s]";
 	public static final String DYNAMIC_BUTTON_IN_DATA_TABLE_NAME_AT_ROW_INDEX_AND_COLUMN_INDEX = "//h6[text()='%s']/parent::div/parent::div/following-sibling::div/div[@role='table']/div[@role='rowgroup']/div[%s]//div[@role='cell'][%s]//button/i[contains(@class,'%s')]";
+	public static final String DYNAMIC_CELL_VALUE_IN_DATA_TABLE_NAME = "//h6[text()='%s']/parent::div/parent::div/following-sibling::div//div[@role='table']/div[@class='oxd-table-body']/div//div[text()='%s']//ancestor::div[@class='oxd-table-card']/preceding-sibling::div";
+	public static final String DYNAMIC_CELL_VALUE_IN_DATA_TABLE_WITHOUT_NAME = "//div[@role='table']/div[@class='oxd-table-body']/div//div[text()='%s']//ancestor::div[@class='oxd-table-card']/preceding-sibling::div";
 	
 	public static final String DYNAMIC_MESSAGE_TITLE = "//div[@aria-live]//p[contains(@class,'title')]";
 	public static final String USER_DROPDOWN_TAB = "//span[@class='oxd-userdropdown-tab']";
