@@ -16,9 +16,9 @@ import com.orangehrm.data.EmployeeData;
 import com.orangehrm.data.EmployeeData.EmployeeInformation;
 
 import commons.BaseTest;
-import pageObjects.orangeHRM.AddEmployeePO;
+import pageObjects.orangeHRM.PIM_AddEmployeePO;
 import pageObjects.orangeHRM.DashboardPO;
-import pageObjects.orangeHRM.EmployeeListPO;
+import pageObjects.orangeHRM.PIM_EmployeeListPO;
 import pageObjects.orangeHRM.LoginPO;
 import pageObjects.orangeHRM.MyInfoPO;
 import pageObjects.orangeHRM.PageGeneratorManager;
@@ -117,7 +117,7 @@ public class OrangeHRM_CreateNewUser extends BaseTest {
 		ExtentTestManagerV5.getTest().log(Status.INFO, "Add New 01 - Step " + ++stepNumber + ": Verify Employee Information is displayed at 'Result Table'");
 		Assert.assertEquals(employeeListPage.getValueInDataTableNameAtColumnNameAndRowIndex(driver, "", "Id", "1"), empInformation.getEmpID());
 		Assert.assertEquals(employeeListPage.getValueInDataTableNameAtColumnNameAndRowIndex(driver, "", "First (& Middle) Name", "1"), empInformation.getEmpFirstName());
-		Assert.assertEquals(employeeListPage.getValueInDataTableNameAtColumnNameAndRowIndex(driver, "", "Last Name", "1"), empInformation.getEmpLastName() + " ");
+		Assert.assertEquals(employeeListPage.getValueInDataTableNameAtColumnNameAndRowIndex(driver, "", "Last Name", "1"), empInformation.getEmpLastName());
 	
 		resultOfCreateUser = true;
 	}
@@ -142,7 +142,7 @@ public class OrangeHRM_CreateNewUser extends BaseTest {
 	
 	private LoginPO loginPage;
 	private DashboardPO dashboardPage;
-	private EmployeeListPO employeeListPage;
-	private AddEmployeePO addEmployeePage;
+	private PIM_EmployeeListPO employeeListPage;
+	private PIM_AddEmployeePO addEmployeePage;
 	private MyInfoPO myInfoPage;
 }

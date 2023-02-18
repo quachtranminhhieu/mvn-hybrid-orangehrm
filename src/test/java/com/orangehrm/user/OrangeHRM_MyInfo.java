@@ -26,9 +26,9 @@ import com.orangehrm.data.MyInfoData.Salary;
 import com.orangehrm.data.MyInfoData.Tax;
 
 import commons.BaseTest;
-import pageObjects.orangeHRM.AddEmployeePO;
+import pageObjects.orangeHRM.PIM_AddEmployeePO;
 import pageObjects.orangeHRM.DashboardPO;
-import pageObjects.orangeHRM.EmployeeListPO;
+import pageObjects.orangeHRM.PIM_EmployeeListPO;
 import pageObjects.orangeHRM.LoginPO;
 import pageObjects.orangeHRM.MyInfoPO;
 import pageObjects.orangeHRM.PageGeneratorManager;
@@ -1016,7 +1016,7 @@ public class OrangeHRM_MyInfo extends BaseTest {
 	
 	private LoginPO loginPage;
 	private DashboardPO dashboardPage;
-	private EmployeeListPO employeeListPage;
-	private AddEmployeePO addEmployeePage;
+	private PIM_EmployeeListPO employeeListPage;
+	private PIM_AddEmployeePO addEmployeePage;
 	private MyInfoPO myInfoPage;
 }
