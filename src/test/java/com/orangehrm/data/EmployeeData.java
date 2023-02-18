@@ -14,8 +14,8 @@ public class EmployeeData {
 	@Setter
 	public class EmployeeInformation {
 		private String empID = "";
-		private String empFirstName = FAKER.getFirstName();
-		private String empLastName = FAKER.getLastName();
+		private String empFirstName = FAKER.getFirstName().replace("'", "");
+		private String empLastName = FAKER.getLastName().replace("'", "");
 		private String empFullName = empFirstName + " " + empLastName;
 		private String empEmail = FAKER.getEmailAddress();
 		private String empUserName = FAKER.getUserName();

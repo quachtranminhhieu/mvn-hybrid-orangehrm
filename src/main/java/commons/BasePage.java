@@ -22,7 +22,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjects.orangeHRM.DashboardPO;
 import pageObjects.orangeHRM.LoginPO;
 import pageObjects.orangeHRM.PageGeneratorManager;
-import pageUIs.orangeHRM.AddEmployeePageUI;
+import pageUIs.orangeHRM.PIM_AddEmployeePageUI;
 import pageUIs.orangeHRM.BasePageUI;
 
 public class BasePage {
@@ -215,13 +215,11 @@ public class BasePage {
 	}
 	
 	public List<WebElement> getListWebElement(WebDriver driver, String xpathLocator){
-		waitForAllElementVisible(driver, xpathLocator);
 		return driver.findElements(getByXpath(xpathLocator));
 	}
 	
 
 	public List<WebElement> getListWebElement(WebDriver driver, String xpathLocator, String... dynamicValues){
-		waitForAllElementVisible(driver, xpathLocator, dynamicValues);
 		return driver.findElements(getByXpath(getDynamicLocator(xpathLocator, dynamicValues)));
 	}
 	
@@ -643,7 +641,7 @@ public class BasePage {
 	
 	public String checkEmployeeIDAlreadyExists(WebDriver driver, String employeeID) {
 		setTimeoutImplicit(driver, 1);
-		if (isElementDisplayed(driver, AddEmployeePageUI.EMPLOYEE_ID_ALREADY_EXISTS_MESSAGE)) {
+		if (isElementDisplayed(driver, PIM_AddEmployeePageUI.EMPLOYEE_ID_ALREADY_EXISTS_MESSAGE)) {
 			employeeID = String.valueOf(Integer.valueOf(employeeID) + 1);
 			int stringLength = employeeID.length();
 			if (stringLength <= 3) {
@@ -661,7 +659,12 @@ public class BasePage {
 	public void sendKeyToTextboxAndClickResultByLabel(WebDriver driver, String textValue, String textboxLabel) {
 		String[] value = textValue.split(" ");
 		sendKeyToElement(driver, BasePageUI.DYNAMIC_TEXTBOX_BY_LABEL, textValue, textboxLabel);
-		clickToElement(driver, BasePageUI.DYNAMIC_OPTION_IN_TEXTBOX, value[0], value[1]);
+		try {
+			clickToElement(driver, BasePageUI.DYNAMIC_OPTION_IN_TEXTBOX, value[0], value[1]);
+		} catch (NoSuchElementException e) {
+			sendKeyToElement(driver, BasePageUI.DYNAMIC_TEXTBOX_BY_LABEL, textValue, textboxLabel);
+			clickToElement(driver, BasePageUI.DYNAMIC_OPTION_IN_TEXTBOX, value[0], value[1]);
+		}
 	}
 	
 	public void sendKeyToFirstNameTextbox(WebDriver driver, String empFirstName) {
@@ -670,6 +673,10 @@ public class BasePage {
 
 	public void sendKeyToLastNameTextbox(WebDriver driver, String empLastName) {
 		sendKeyToElement(driver, BasePageUI.LAST_NAME_TEXTBOX, empLastName);
+	}
+	
+	public void sendKeyToTextareaByLabel(WebDriver driver, String textValue, String textareaLabel) {
+		sendKeyToElement(driver, BasePageUI.DYNAMIC_TEXTAREA_BY_LABEL, textValue, textareaLabel);
 	}
 	
 	public String getFirstNameTextboxValue(WebDriver driver) {
@@ -696,8 +703,16 @@ public class BasePage {
 		}
 	}
 	
+	public String getTextareaValueByLabel(WebDriver driver, String textareaLabel) {
+		return getElementAttribute(driver, BasePageUI.DYNAMIC_TEXTAREA_BY_LABEL, "value", textareaLabel);
+	}
+	
 	public String getTextboxValueByLabel(WebDriver driver, String textboxLabel) {
 		return getElementAttribute(driver, BasePageUI.DYNAMIC_TEXTBOX_BY_LABEL, "value", textboxLabel);
+	}
+	
+	public String getTextValueByLabel(WebDriver driver, String textLabel) {
+		return getElementText(driver, BasePageUI.DYNAMIC_TEXT_BY_LABEL, textLabel);
 	}
 	
 	public void clickToSwitchByLabel(WebDriver driver, String switchLabel) {
@@ -711,6 +726,16 @@ public class BasePage {
 	public boolean isRadioButtonSelectedByLabel(WebDriver driver, String radioButtonLabel) {
 //		return getElementCssValue(driver, BasePageUI.DYNAMIC_RADIO_BUTTON_BY_LABEL, "box-shadow", radioButtonLabel).contains("rgb(255, 123, 29)");
 		return getElementCssValue(driver, BasePageUI.DYNAMIC_RADIO_BUTTON_BY_LABEL, "box-shadow", radioButtonLabel).contains("rgb");
+	}
+	
+	public String getRowIndexInDataTableNameAtColumnValue(WebDriver driver, String dataTableName, String columnValue) {
+		if(dataTableName.isEmpty()) {
+			int cellIndex = getElementSize(driver, BasePageUI.DYNAMIC_CELL_VALUE_IN_DATA_TABLE_WITHOUT_NAME, columnValue) + 1;
+			return String.valueOf(cellIndex);
+		} else {
+			int cellIndex = getElementSize(driver, BasePageUI.DYNAMIC_CELL_VALUE_IN_DATA_TABLE_NAME, dataTableName, columnValue) + 1;
+			return String.valueOf(cellIndex);
+		}
 	}
 	
 	public String getValueInDataTableNameAtColumnNameAndRowIndex(WebDriver driver, String dataTableName, String headerName, String rowIndex) {

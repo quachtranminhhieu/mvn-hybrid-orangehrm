@@ -28,8 +28,9 @@
 	<test name="Run on Chrome">
 		<parameter name="browserName" value="Chrome" />
 		<classes>
-<!-- 			<class name="com.orangehrm.user.Live_Coding_OrangeHRM" /> -->
-			<class name="demo.TestCase" />
+			<class name="com.orangehrm.user.OrangeHRM_CreateNewUser" />
+			<class name="com.orangehrm.user.OrangeHRM_Admin_01" />
+			<class name="com.orangehrm.user.OrangeHRM_Admin_02" />
 		</classes>
 	</test>
 	

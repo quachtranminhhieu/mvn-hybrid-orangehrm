@@ -12,15 +12,31 @@ public class PageGeneratorManager {
 		return new DashboardPO(driver);
 	}
 	
-	public static EmployeeListPO getEmployeeListPage(WebDriver driver) {
-		return new EmployeeListPO(driver);
+	public static PIM_EmployeeListPO getEmployeeListPage(WebDriver driver) {
+		return new PIM_EmployeeListPO(driver);
 	}
 	
-	public static AddEmployeePO getAddEmployeePage(WebDriver driver) {
-		return new AddEmployeePO(driver);
+	public static PIM_AddEmployeePO getAddEmployeePage(WebDriver driver) {
+		return new PIM_AddEmployeePO(driver);
 	}
 	
 	public static MyInfoPO getMyInfoPage(WebDriver driver) {
 		return new MyInfoPO(driver);
+	}
+	
+	public static Admin_UserManagementPO getUserManagementPage(WebDriver driver) {
+		return new Admin_UserManagementPO(driver);
+	}
+	
+	public static Admin_JobPO getJobPage(WebDriver driver) {
+		return new Admin_JobPO(driver);
+	}
+	
+	public static Admin_OrganizationPO getOrganizationPage(WebDriver driver) {
+		return new Admin_OrganizationPO(driver);
+	}
+	
+	public static Admin_QualificationPO getQualificationPage(WebDriver driver) {
+		return new Admin_QualificationPO(driver);
 	}
 }

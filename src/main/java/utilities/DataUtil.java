@@ -156,6 +156,10 @@ public class DataUtil {
 		return faker.address().city();
 	}
 	
+	public String getCountry() {
+		return faker.address().country();
+	}
+	
 	public String getState() {
 		return faker.address().state();
 	}
@@ -165,7 +169,12 @@ public class DataUtil {
 	}
 	
 	public String getRandomNumber(int min, int max) {
-		return String.valueOf(faker.number().numberBetween(min, max));
+		int randomNumber = faker.number().numberBetween(min, max);
+		if (randomNumber > 0 && randomNumber < 10) {
+			return "0" + randomNumber;
+		} else {
+			return String.valueOf(randomNumber);
+		}
 	}
 	
 	public String getRandomDigit() {
@@ -174,5 +183,33 @@ public class DataUtil {
 	
 	public String getRandomDouble(int maxNumberOfDecimals, int min, int max) {
 		return String.valueOf(faker.number().randomDouble(maxNumberOfDecimals, min, max));
+	}
+	
+	public String getJobTitle() {
+		return faker.job().title();
+	}
+	
+	public String getJobDescription() {
+		return faker.leagueOfLegends().quote();
+	}
+	
+	public String getJobNote() {
+		return faker.gameOfThrones().quote();
+	}
+	
+	public String getJobCategory() {
+		return faker.job().field();
+	}
+	
+	public String getProgrammingLanguageName() {
+		return faker.programmingLanguage().name();
+	}
+	
+	public String getProgrammingLanguageCreator() {
+		return faker.programmingLanguage().creator();
+	}
+	
+	public String getEducationLevel() {
+		return faker.educator().course();
 	}
 }
