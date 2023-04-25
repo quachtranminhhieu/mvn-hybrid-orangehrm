@@ -80,7 +80,7 @@ public class Cloud_Testing extends BaseTest {
 		empID = addEmployeePage.checkEmployeeIDAlreadyExists(driver, empID);
 		
 		log.info("Add New 01 - Step " + ++stepNumber + ": Click to 'Create Login Details' switch");
-		addEmployeePage.clickToSwitchByLabel(driver, "Create Login Details");
+		addEmployeePage.clickToSwitchOnByLabel(driver, "Create Login Details");
 		
 		log.info("Add New 01 - Step " + ++stepNumber + ": Enter to 'User Name' textbox with value is: '" + empUserName + "'");
 		addEmployeePage.sendKeyToTextboxByLabel(driver, empUserName, "Username");

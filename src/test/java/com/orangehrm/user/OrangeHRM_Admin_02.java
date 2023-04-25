@@ -102,7 +102,7 @@ public class OrangeHRM_Admin_02 extends BaseTest{
 		
 		ExtentTestManagerV5.getTest().log(Status.INFO, "Organization Information 01 - Step " + ++stepNumber + ": Click to 'Edit' switch");
 		organizationPage = PageGeneratorManager.getOrganizationPage(driver);
-		organizationPage.clickToSwitchByLabel(driver, "Edit");
+		organizationPage.clickToSwitchOnByLabel(driver, "Edit");
 		
 		ExtentTestManagerV5.getTest().log(Status.INFO, "Organization Information 01 - Step " + ++stepNumber + ": Enter to 'Organization Name' textbox with value is: '" + adminORGName + "'");
 		organizationPage.sendKeyToTextboxByLabel(driver, adminORGName, "Organization Name");
@@ -265,7 +265,7 @@ public class OrangeHRM_Admin_02 extends BaseTest{
 		organizationPage.openChildSubMenuPage(driver, "Organization", "Structure");
 		
 		ExtentTestManagerV5.getTest().log(Status.INFO, "Organization Structure 03 - Step " + ++stepNumber + ": Click to 'Edit' switch");
-		organizationPage.clickToSwitchByLabel(driver, "Edit");
+		organizationPage.clickToSwitchOnByLabel(driver, "Edit");
 		
 		ExtentTestManagerV5.getTest().log(Status.INFO, "Organization Structure 03 - Step " + ++stepNumber + ": Click to 'Add' button");
 		organizationPage.clickToButtonByText(driver, "Add");

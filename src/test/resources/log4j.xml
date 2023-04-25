@@ -11,7 +11,7 @@
 	</appender>
 
 	<appender name="logfile" class="org.apache.log4j.FileAppender">
-		<param name="File" value="./scriptLogs/OrangeHRM.txt" />
+		<param name="File" value="./src/main/resources/scriptLogs/OrangeHRM.txt" />
 		<param name="Append" value="true" />
 		<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern" value="[%d] %m%n" />
@@ -19,7 +19,7 @@
 	</appender>
 
 	<appender name="file" class="org.apache.log4j.RollingFileAppender">
-		<param name="File" value="./scriptLogs/OrangeHRM.log" />
+		<param name="File" value="./src/main/resources/scriptLogs/OrangeHRM.log" />
 		<param name="Append" value="true" />
 		<param name="maxFileSize" value="10MB" />
 		<param name="maxBackupIndex" value="10" />

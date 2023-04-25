@@ -31,6 +31,14 @@ public class MyInfoPO extends BasePage{
 	public void checkToSmokerCheckbox() {
 		checkToCheckboxRadio(driver, MyInfoPageUI.SMOKER_CHECKBOX);
 	}
+	
+	public boolean isSmokerCheckboxDisplayed() {
+		return isElementDisplayed(driver, MyInfoPageUI.SMOKER_CHECKBOX);
+	}
+	
+	public boolean isSmokerCheckboxUndisplayed() {
+		return isElementUndisplayed(driver, MyInfoPageUI.SMOKER_CHECKBOX);
+	}
 
 	public void sendKeyToAmountTextboxInDepositDetailsForm(String empSalaryAccAmount) {
 		sendKeyToElement(driver, MyInfoPageUI.AMOUNT_TEXTBOX_IN_DEPOSIT_DETAILS_FORM, empSalaryAccAmount);
@@ -52,4 +60,5 @@ public class MyInfoPO extends BasePage{
 	public String getTextboxValueLabelInFormName(String formName, String textboxLabel) {
 		return getElementAttribute(driver, MyInfoPageUI.DYNAMIC_TEXTBOX_BY_LABEL_IN_FORM_NAME, "value", formName, textboxLabel);
 	}
+
 }

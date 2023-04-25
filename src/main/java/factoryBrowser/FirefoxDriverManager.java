@@ -27,7 +27,7 @@ public class FirefoxDriverManager implements IBrowserFactory {
 		
 		// Add extension
 //		FirefoxProfile profile = new FirefoxProfile();
-//		File firefoxExtension = new File(GlobalConstants.EXTENSION_PATH + "adblock_plus-3.15.2.xpi");
+//		File firefoxExtension = new File(GlobalConstants.getGlobalConstant().getExtensionFilePath() + "adblock_plus-3.15.2.xpi");
 //		profile.addExtension(firefoxExtension);
 //		options.setProfile(profile);
 

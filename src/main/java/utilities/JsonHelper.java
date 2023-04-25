@@ -13,7 +13,7 @@ public class JsonHelper {
 		try {
 			ObjectMapper mapper = new ObjectMapper();
 			mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-			return mapper.readValue(new File(GlobalConstants.getGlobalConstant().getProjectPath() + "\\src\\test\\java\\com\\orangeHRM\\data\\EmployeeData.json"), JsonHelper.class);
+			return mapper.readValue(new File(GlobalConstants.getGlobalConstant().getSourceTestJavaPath() + "com\\orangeHRM\\data\\EmployeeData.json"), JsonHelper.class);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;

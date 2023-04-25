@@ -2,6 +2,7 @@ package com.orangehrm.user;
 
 import java.lang.reflect.Method;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -16,7 +17,7 @@ import com.orangehrm.data.EmployeeData;
 import com.orangehrm.data.EmployeeData.EmployeeInformation;
 
 import commons.BaseTest;
-import pageObjects.orangeHRM.PIM_AddEmployeePO;
+import pageObjects.orangeHRM.PIM_ConfigurationPO;
 import pageObjects.orangeHRM.DashboardPO;
 import pageObjects.orangeHRM.PIM_EmployeeListPO;
 import pageObjects.orangeHRM.LoginPO;
@@ -52,74 +53,103 @@ public class OrangeHRM_PIM_02 extends BaseTest {
 	}
 	
 	@Test
-	public void Employee_01_Add_New_Employee(Method method) {
-		ExtentTestManagerV5.startTest(method.getName(), "Employee_01_Add_New_Employee");
-		ExtentTestManagerV5.getTest().log(Status.INFO, "Add New 01 - Step " + ++stepNumber + ": Open 'Employee List' page");
+	public void PIM_01_Configuration(Method method) {
+		ExtentTestManagerV5.startTest(method.getName(), "PIM_01_Configuration");
+		ExtentTestManagerV5.getTest().log(Status.INFO, "PIM Configuration 01 - Step " + ++stepNumber + ": Open 'PIM' page");
 		dashboardPage.openMenuPage(driver, "PIM");
 		employeeListPage = PageGeneratorManager.getEmployeeListPage(driver);
+		
+//		ExtentTestManagerV5.getTest().log(Status.INFO, "PIM Configuration 01 - Step " + ++stepNumber + ": Click To 'Optional Fields' Sub Menu");
+//		employeeListPage.openChildSubMenuPage(driver, "Configuration", "Optional Fields");
+//		configurationPage = PageGeneratorManager.getConfigurationPage(driver);
+//		
+//		ExtentTestManagerV5.getTest().log(Status.INFO, "PIM Configuration 01 - Step " + ++stepNumber + ": Click to turn off 'Show Nick Name, Smoker and Military Service in Personal Details' switch");
+//		configurationPage.clickToSwitchOffByLabel(driver, "Show Nick Name, Smoker and Military Service in Personal Details");
+//		
+//		ExtentTestManagerV5.getTest().log(Status.INFO, "PIM Configuration 01 - Step " + ++stepNumber + ": Click to turn off 'Show SSN field in Personal Details' switch");
+//		configurationPage.clickToSwitchOffByLabel(driver, "Show SSN field in Personal Details");
+//		
+//		ExtentTestManagerV5.getTest().log(Status.INFO, "PIM Configuration 01 - Step " + ++stepNumber + ": Click to turn off 'Show SIN field in Personal Details' switch");
+//		configurationPage.clickToSwitchOffByLabel(driver, "Show SIN field in Personal Details");
+//		
+//		ExtentTestManagerV5.getTest().log(Status.INFO, "PIM Configuration 01 - Step " + ++stepNumber + ": Click to turn off 'Show US Tax Exemptions menu' switch");
+//		configurationPage.clickToSwitchOffByLabel(driver, "Show US Tax Exemptions menu");
+//		
+//		ExtentTestManagerV5.getTest().log(Status.INFO, "PIM Configuration 01 - Step " + ++stepNumber + ": Click To 'Save' button");
+//		configurationPage.clickToButtonByText(driver, "Save");
+//		
+//		ExtentTestManagerV5.getTest().log(Status.INFO, "PIM Configuration 01 - Step " + ++stepNumber + ": Verify 'Successful Message' is displayed");
+//		Assert.assertEquals(configurationPage.getMessageTitle(driver), "Success");
+//		configurationPage.waitForLoadingIconDisappear(driver);
+//
+//		ExtentTestManagerV5.getTest().log(Status.INFO, "PIM Configuration 01 - Step " + ++stepNumber + ": Click To 'Employee List' Menu");
+//		configurationPage.openSubMenuPage(driver, "PIM", "Employee List");
+//		employeeListPage = PageGeneratorManager.getEmployeeListPage(driver);
+//		
+//		ExtentTestManagerV5.getTest().log(Status.INFO, "PIM Configuration 01 - Step " + ++stepNumber + ": Click To 'Edit' button at data table");
+//		employeeListPage.clickToButtonNameInDataTableNameAtColumnNameAndRowIndex(driver, "", "Actions", "1", "pencil");
+//		myInfoPage = PageGeneratorManager.getMyInfoPage(driver);
+//		
+//		ExtentTestManagerV5.getTest().log(Status.INFO, "PIM Configuration 01 - Step " + ++stepNumber + ": Verify 'Nickname' textbox is not displayed");
+//		Assert.assertTrue(myInfoPage.isTextboxUndisplayedByLabel(driver, "Nickname"));
+//		
+//		ExtentTestManagerV5.getTest().log(Status.INFO, "PIM Configuration 01 - Step " + ++stepNumber + ": Verify 'Smoker' checkbox is not displayed");
+//		Assert.assertTrue(myInfoPage.isSmokerCheckboxUndisplayed());
+//		
+//		ExtentTestManagerV5.getTest().log(Status.INFO, "PIM Configuration 01 - Step " + ++stepNumber + ": Verify 'Military Service' textbox is not displayed");
+//		Assert.assertTrue(myInfoPage.isTextboxUndisplayedByLabel(driver, "Military Service"));
+//		
+//		ExtentTestManagerV5.getTest().log(Status.INFO, "PIM Configuration 01 - Step " + ++stepNumber + ": Verify 'SSN Number' textbox is not displayed");
+//		Assert.assertTrue(myInfoPage.isTextboxUndisplayedByLabel(driver, "SSN Number"));
+//		
+//		ExtentTestManagerV5.getTest().log(Status.INFO, "PIM Configuration 01 - Step " + ++stepNumber + ": Verify 'SIN Number' textbox is not displayed");
+//		Assert.assertTrue(myInfoPage.isTextboxUndisplayedByLabel(driver, "SIN Number"));
+		
+		ExtentTestManagerV5.getTest().log(Status.INFO, "PIM Configuration 01 - Step " + ++stepNumber + ": Click To 'Optional Fields' Sub Menu");
+		employeeListPage.openChildSubMenuPage(driver, "Configuration", "Optional Fields");
+		configurationPage = PageGeneratorManager.getConfigurationPage(driver);
+		
+		ExtentTestManagerV5.getTest().log(Status.INFO, "PIM Configuration 01 - Step " + ++stepNumber + ": Click to turn on 'Show Nick Name, Smoker and Military Service in Personal Details' switch");
+		configurationPage.clickToSwitchOnByLabel(driver, "Show Nick Name, Smoker and Military Service in Personal Details");
+		
+		ExtentTestManagerV5.getTest().log(Status.INFO, "PIM Configuration 01 - Step " + ++stepNumber + ": Click to turn on 'Show SSN field in Personal Details' switch");
+		configurationPage.clickToSwitchOnByLabel(driver, "Show SSN field in Personal Details");
+		
+		ExtentTestManagerV5.getTest().log(Status.INFO, "PIM Configuration 01 - Step " + ++stepNumber + ": Click to turn on 'Show SIN field in Personal Details' switch");
+		configurationPage.clickToSwitchOnByLabel(driver, "Show SIN field in Personal Details");
+		
+		ExtentTestManagerV5.getTest().log(Status.INFO, "PIM Configuration 01 - Step " + ++stepNumber + ": Click to turn on 'Show US Tax Exemptions menu' switch");
+		configurationPage.clickToSwitchOnByLabel(driver, "Show US Tax Exemptions menu");
+		
+		ExtentTestManagerV5.getTest().log(Status.INFO, "PIM Configuration 01 - Step " + ++stepNumber + ": Click To 'Save' button");
+		configurationPage.clickToButtonByText(driver, "Save");
+		
+		ExtentTestManagerV5.getTest().log(Status.INFO, "PIM Configuration 01 - Step " + ++stepNumber + ": Verify 'Successful Message' is displayed");
+		Assert.assertEquals(configurationPage.getMessageTitle(driver), "Success");
+		configurationPage.waitForLoadingIconDisappear(driver);
 
-		ExtentTestManagerV5.getTest().log(Status.INFO, "Add New 01 - Step " + ++stepNumber + ": Click To 'Add' button");
-		employeeListPage.clickToButtonByText(driver, "Add");
-		addEmployeePage = PageGeneratorManager.getAddEmployeePage(driver);
-		addEmployeePage.waitForLoadingIconDisappear(driver);
-
-		ExtentTestManagerV5.getTest().log(Status.INFO, "Add New 01 - Step " + ++stepNumber + ": Enter to 'First Name' textbox with value is: '" + empInformation.getEmpFirstName() + "'");
-		addEmployeePage.sendKeyToFirstNameTextbox(driver, empInformation.getEmpFirstName());
-		
-		ExtentTestManagerV5.getTest().log(Status.INFO, "Add New 01 - Step " + ++stepNumber + ": Enter to 'Last Name' textbox with value is: '" + empInformation.getEmpLastName() + "'");
-		addEmployeePage.sendKeyToLastNameTextbox(driver, empInformation.getEmpLastName());
-		
-		ExtentTestManagerV5.getTest().log(Status.INFO, "Add New 01 - Step " + ++stepNumber + ": Get value of 'Employee ID'");
-		String empID = addEmployeePage.getTextboxValueByLabel(driver, "Employee Id");
-		empInformation.setEmpID(empID);
-		employeeID = empID;
-		
-		ExtentTestManagerV5.getTest().log(Status.INFO, "Add New 01 - Step " + ++stepNumber + ": Enter to 'Employee Id' textbox with value is: '" + empInformation.getEmpID() + "'");
-		addEmployeePage.sendKeyToTextboxByLabel(driver, empInformation.getEmpID(), "Employee Id");
-		empInformation.setEmpID(addEmployeePage.checkEmployeeIDAlreadyExists(driver, empInformation.getEmpID()));
-		
-		ExtentTestManagerV5.getTest().log(Status.INFO, "Add New 01 - Step " + ++stepNumber + ": Click to 'Create Login Details' switch");
-		addEmployeePage.clickToSwitchByLabel(driver, "Create Login Details");
-		
-		ExtentTestManagerV5.getTest().log(Status.INFO, "Add New 01 - Step " + ++stepNumber + ": Enter to 'User Name' textbox with value is: '" + empInformation.getEmpUserName() + "'");
-		addEmployeePage.sendKeyToTextboxByLabel(driver, empInformation.getEmpUserName(), "Username");
-		
-		ExtentTestManagerV5.getTest().log(Status.INFO, "Add New 01 - Step " + ++stepNumber + ": Enter to 'Password' textbox with value is: '" + empInformation.getEmpPassword() + "'");
-		addEmployeePage.sendKeyToTextboxByLabel(driver, empInformation.getEmpPassword(), "Password");
-		
-		ExtentTestManagerV5.getTest().log(Status.INFO, "Add New 01 - Step " + ++stepNumber + ": Enter to 'Confirm Password' textbox with value is: '" + empInformation.getEmpPassword() + "'");
-		addEmployeePage.sendKeyToTextboxByLabel(driver, empInformation.getEmpPassword(), "Confirm Password");
-		
-		ExtentTestManagerV5.getTest().log(Status.INFO, "Add New 01 - Step " + ++stepNumber + ": Click to '" + empInformation.getEmpStatusValue() +"' radio button");
-		addEmployeePage.checkToRadioButtonByLabel(driver, empInformation.getEmpStatusValue());
-		
-		ExtentTestManagerV5.getTest().log(Status.INFO, "Add New 01 - Step " + ++stepNumber + ": Click to 'Save' button");
-		addEmployeePage.clickToButtonByText(driver, "Save");
-		myInfoPage = PageGeneratorManager.getMyInfoPage(driver);
-		
-		ExtentTestManagerV5.getTest().log(Status.INFO, "Add New 01 - Step " + ++stepNumber + ": Verify 'Successful Message' is displayed");
-		Assert.assertEquals(myInfoPage.getMessageTitle(driver), "Success");
-		myInfoPage.waitForLoadingIconDisappear(driver);
-		
- 		ExtentTestManagerV5.getTest().log(Status.INFO, "Add New 01 - Step " + ++stepNumber + ": Open 'Employee List' page");
-		myInfoPage.openSubMenuPage(driver, "PIM", "Employee List");
+		ExtentTestManagerV5.getTest().log(Status.INFO, "PIM Configuration 01 - Step " + ++stepNumber + ": Click To 'Employee List' Menu");
+		configurationPage.openSubMenuPage(driver, "PIM", "Employee List");
 		employeeListPage = PageGeneratorManager.getEmployeeListPage(driver);
 		
-		ExtentTestManagerV5.getTest().log(Status.INFO, "Add New 01 - Step " + ++stepNumber + ": Enter to 'Employee Name' textbox with value is: '" + empInformation.getEmpFullName() + "'");
-		employeeListPage.sendKeyToTextboxAndClickResultByLabel(driver, empInformation.getEmpFullName(), "Employee Name");
-	
-		ExtentTestManagerV5.getTest().log(Status.INFO, "Add New 01 - Step " + ++stepNumber + ": Enter to 'Employee Id' textbox with value is: '" + empInformation.getEmpID() + "'");
-		employeeListPage.sendKeyToTextboxByLabel(driver, empInformation.getEmpID(), "Employee Id");
+		ExtentTestManagerV5.getTest().log(Status.INFO, "PIM Configuration 01 - Step " + ++stepNumber + ": Click To 'Edit' button at data table");
+		employeeListPage.clickToButtonNameInDataTableNameAtColumnNameAndRowIndex(driver, "", "Actions", "1", "pencil");
+		myInfoPage = PageGeneratorManager.getMyInfoPage(driver);
 		
-		ExtentTestManagerV5.getTest().log(Status.INFO, "Add New 01 - Step " + ++stepNumber + ": Click to 'Search' button");
-		employeeListPage.clickToButtonByText(driver, "Search");
+		ExtentTestManagerV5.getTest().log(Status.INFO, "PIM Configuration 01 - Step " + ++stepNumber + ": Verify 'Nickname' textbox is displayed");
+		Assert.assertTrue(myInfoPage.isTextboxDisplayedByLabel(driver, "Nickname"));
 		
-		ExtentTestManagerV5.getTest().log(Status.INFO, "Add New 01 - Step " + ++stepNumber + ": Verify Employee Information is displayed at 'Result Table'");
-		Assert.assertEquals(employeeListPage.getValueInDataTableNameAtColumnNameAndRowIndex(driver, "", "Id", "1"), empInformation.getEmpID());
-		Assert.assertEquals(employeeListPage.getValueInDataTableNameAtColumnNameAndRowIndex(driver, "", "First (& Middle) Name", "1"), empInformation.getEmpFirstName());
-		Assert.assertEquals(employeeListPage.getValueInDataTableNameAtColumnNameAndRowIndex(driver, "", "Last Name", "1"), empInformation.getEmpLastName());
-	
-		resultOfCreateUser = true;
+		ExtentTestManagerV5.getTest().log(Status.INFO, "PIM Configuration 01 - Step " + ++stepNumber + ": Verify 'Smoker' checkbox is displayed");
+		Assert.assertTrue(myInfoPage.isSmokerCheckboxDisplayed());
+		
+		ExtentTestManagerV5.getTest().log(Status.INFO, "PIM Configuration 01 - Step " + ++stepNumber + ": Verify 'Military Service' textbox is displayed");
+		Assert.assertTrue(myInfoPage.isTextboxDisplayedByLabel(driver, "Military Service"));
+		
+		ExtentTestManagerV5.getTest().log(Status.INFO, "PIM Configuration 01 - Step " + ++stepNumber + ": Verify 'SSN Number' textbox is displayed");
+		Assert.assertTrue(myInfoPage.isTextboxDisplayedByLabel(driver, "SSN Number"));
+		
+		ExtentTestManagerV5.getTest().log(Status.INFO, "PIM Configuration 01 - Step " + ++stepNumber + ": Verify 'SIN Number' textbox is displayed");
+		Assert.assertTrue(myInfoPage.isTextboxDisplayedByLabel(driver, "SIN Number"));
 	}
 	
 	@Parameters("serverName")
@@ -143,6 +173,6 @@ public class OrangeHRM_PIM_02 extends BaseTest {
 	private LoginPO loginPage;
 	private DashboardPO dashboardPage;
 	private PIM_EmployeeListPO employeeListPage;
-	private PIM_AddEmployeePO addEmployeePage;
+	private PIM_ConfigurationPO configurationPage;
 	private MyInfoPO myInfoPage;
 }

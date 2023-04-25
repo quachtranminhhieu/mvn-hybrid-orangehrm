@@ -420,6 +420,19 @@ public class BasePage {
 		}
 	}
 	
+	public boolean isElementUndisplayed(WebDriver driver, String xpathLocator, String... dynamicValues) {
+		setTimeoutImplicit(driver, shortTimeout);
+		List<WebElement> elements = getListWebElement(driver, getDynamicLocator(xpathLocator, dynamicValues));
+		setTimeoutImplicit(driver, longTimeout);
+		if (elements.size() == 0) {
+			return true;
+		} else if (elements.size() > 0 && !elements.get(0).isDisplayed()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 	public boolean isElementEnable(WebDriver driver, String xpathLocator) {
 		return waitForElementVisible(driver, xpathLocator).isEnabled();
 	}
@@ -715,8 +728,16 @@ public class BasePage {
 		return getElementText(driver, BasePageUI.DYNAMIC_TEXT_BY_LABEL, textLabel);
 	}
 	
-	public void clickToSwitchByLabel(WebDriver driver, String switchLabel) {
-		clickToElementByJS(driver, BasePageUI.DYNAMIC_SWITCH, switchLabel);
+	public void clickToSwitchOnByLabel(WebDriver driver, String switchLabel) {
+		if (getElementCssValue(driver, BasePageUI.DYNAMIC_SWITCH, "background-color", switchLabel).equals("rgb(232, 234, 239)")) {
+			clickToElementByJS(driver, BasePageUI.DYNAMIC_SWITCH, switchLabel);
+		}
+	}
+	
+	public void clickToSwitchOffByLabel(WebDriver driver, String switchLabel) {
+		if (!getElementCssValue(driver, BasePageUI.DYNAMIC_SWITCH, "background-color", switchLabel).equals("rgb(232, 234, 239)")) {
+			clickToElementByJS(driver, BasePageUI.DYNAMIC_SWITCH, switchLabel);
+		}
 	}
 	
 	public void checkToRadioButtonByLabel(WebDriver driver, String radioButtonLabel) {
@@ -772,6 +793,28 @@ public class BasePage {
 	
 	public boolean isTextboxEnabledByLabel(WebDriver driver, String textboxLabel) {
 		return isElementEnable(driver, BasePageUI.DYNAMIC_TEXTBOX_BY_LABEL, textboxLabel);
+	}
+	
+	public boolean isTextboxDisplayedByLabel(WebDriver driver, String textboxLabel) {
+		List<WebElement> elements = getListWebElement(driver, BasePageUI.DYNAMIC_TEXTBOX_BY_LABEL, textboxLabel);
+		
+		if (elements.size() == 1) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public boolean isTextboxUndisplayedByLabel(WebDriver driver, String textboxLabel) {
+		setTimeoutImplicit(driver, shortTimeout);
+		List<WebElement> elements = getListWebElement(driver, BasePageUI.DYNAMIC_TEXTBOX_BY_LABEL, textboxLabel);
+		setTimeoutImplicit(driver, longTimeout);
+		
+		if (elements.size() == 0) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	public void selectItemInCustomDropdownByLabel(WebDriver driver, String itemValue, String dropdownLabel) {

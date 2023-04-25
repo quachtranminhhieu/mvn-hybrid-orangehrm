@@ -79,7 +79,7 @@ public class OrangeHRM_PIM_01_CreateNewUser extends BaseTest {
 		empInformation.setEmpID(addEmployeePage.checkEmployeeIDAlreadyExists(driver, empInformation.getEmpID()));
 		
 		ExtentTestManagerV5.getTest().log(Status.INFO, "Add New 01 - Step " + ++stepNumber + ": Click to 'Create Login Details' switch");
-		addEmployeePage.clickToSwitchByLabel(driver, "Create Login Details");
+		addEmployeePage.clickToSwitchOnByLabel(driver, "Create Login Details");
 		
 		ExtentTestManagerV5.getTest().log(Status.INFO, "Add New 01 - Step " + ++stepNumber + ": Enter to 'User Name' textbox with value is: '" + empInformation.getEmpUserName() + "'");
 		addEmployeePage.sendKeyToTextboxByLabel(driver, empInformation.getEmpUserName(), "Username");

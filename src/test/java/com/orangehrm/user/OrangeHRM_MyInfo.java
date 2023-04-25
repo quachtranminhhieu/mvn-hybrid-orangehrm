@@ -411,7 +411,7 @@ public class OrangeHRM_MyInfo extends BaseTest {
 		myInfoPage.selectItemInCustomDropdownByLabel(driver, empJob.getEmpJobStatus(), "Employment Status");
 		
 		ExtentTestManagerV5.getTest().log(Status.INFO, "Job 08 - Step " + ++stepNumber + ": Click to 'Include Employment Contract Details' switch");
-		myInfoPage.clickToSwitchByLabel(driver, "Include Employment Contract Details");
+		myInfoPage.clickToSwitchOnByLabel(driver, "Include Employment Contract Details");
 	
 		ExtentTestManagerV5.getTest().log(Status.INFO, "Job 08 - Step " + ++stepNumber + ": Enter to 'Contract Start Date' textbox with value is: '" + empJob.getEmpJobStartDate() + "'");
 		myInfoPage.sendKeyToTextboxByLabel(driver, empJob.getEmpJobStartDate(), "Contract Start Date");
@@ -477,7 +477,7 @@ public class OrangeHRM_MyInfo extends BaseTest {
 		myInfoPage.sendKeyToTextboxByLabel(driver, empSalary.getEmpSalaryAmount(), "Amount");
 		
 		ExtentTestManagerV5.getTest().log(Status.INFO, "Salary 09 - Step " + ++stepNumber + ": Click to 'Include Direct Deposit Details' switch");
-		myInfoPage.clickToSwitchByLabel(driver, "Include Direct Deposit Details");
+		myInfoPage.clickToSwitchOnByLabel(driver, "Include Direct Deposit Details");
 		
 		ExtentTestManagerV5.getTest().log(Status.INFO, "Salary 09 - Step " + ++stepNumber + ": Enter to 'Account Number' textbox with value is: '" + empSalary.getEmpSalaryAccNumb() + "'");
 		myInfoPage.sendKeyToTextboxByLabel(driver, empSalary.getEmpSalaryAccNumb(), "Account Number");

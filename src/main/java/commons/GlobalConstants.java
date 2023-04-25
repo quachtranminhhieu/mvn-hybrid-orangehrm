@@ -45,10 +45,14 @@ public class GlobalConstants {
 	private final String osName = System.getProperty("os.name");
 	
 	private final String projectPath = System.getProperty("user.dir");
-	private final String extensionFilePath = projectPath + File.separator + "browserExtensions" + File.separator;
-	private final String uploadFilePath = projectPath + File.separator +"uploadFiles" + File.separator;
-	private final String downloadFilePath = projectPath + File.separator +"downloadFiles" + File.separator;
-	private final String browserLogPath = projectPath + File.separator + "browserLogs" + File.separator;
+	private final String sourceMainJavaPath = projectPath + File.separator + "src" + File.separator + "main" + File.separator + "java" + File.separator;
+	private final String sourceMainResourcePath = projectPath + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator;
+	private final String sourceTestJavaPath = projectPath + File.separator + "src" + File.separator + "test" + File.separator + "java" + File.separator;
+	private final String sourceTestResourcePath = projectPath + File.separator + "src" + File.separator + "test" + File.separator + "resources" + File.separator;
+	private final String extensionFilePath = sourceMainResourcePath + "browserExtensions" + File.separator;
+	private final String uploadFilePath = sourceMainResourcePath + "uploadFiles" + File.separator;
+	private final String downloadFilePath = sourceMainResourcePath + "downloadFiles" + File.separator;
+	private final String browserLogPath = sourceMainResourcePath + "browserLogs" + File.separator;
 	private final String reportNGScreenshotPath = projectPath + File.separator + "reportNGImages" + File.separator;
 	
 	private final String browserStackUsername = "minhhiu_ysaoJj";

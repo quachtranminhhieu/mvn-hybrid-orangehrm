@@ -20,6 +20,10 @@ public class PageGeneratorManager {
 		return new PIM_AddEmployeePO(driver);
 	}
 	
+	public static PIM_ConfigurationPO getConfigurationPage(WebDriver driver) {
+		return new PIM_ConfigurationPO(driver);
+	}
+	
 	public static MyInfoPO getMyInfoPage(WebDriver driver) {
 		return new MyInfoPO(driver);
 	}
