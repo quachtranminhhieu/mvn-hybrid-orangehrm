@@ -17,8 +17,8 @@
 	<parameter name="environmentName" value="dev" />
 	<parameter name="serverName" value="local" />
 
-<!-- 	<test name="Run on Firefox"> -->
-<!-- 		<parameter name = "browserName" value = "Firefox"/> -->
+<!-- 	<test name="Run on Chrome"> -->
+<!-- 		<parameter name = "browserName" value = "Chrome"/> -->
 <!-- 		<classes> -->
 <!-- 			<class name="com.orangehrm.user.Live_Coding_OrangeHRM" /> -->
 <!-- 		</classes> -->
